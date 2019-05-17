@@ -4,13 +4,15 @@
 
 #runs the docker-compose.yml showing logs
 up :
-	@echo "Starting Riff Business Analytics on port 3000.";
+	@echo "Starting Riff Business Analytics.";
 	@docker-compose up;
+	@echo "Processes Complete. Metabase running on port 3000.";
 
 #runs the docker-compose.yml detached
 up-detach :
-	@echo "Starting Riff Business Analytics on port 3000 - detached.";
+	@echo "Starting Riff Business Analytics.";
 	@docker-compose up --detach;
+	@echo "Processes Complete. Metabase running on port 3000.";
 
 #stops and removes containers
 down :

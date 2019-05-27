@@ -18,11 +18,8 @@ up-detach :
 down :
 	@docker-compose down
 
-#runs the docker-compose.yml detached
 #runs the script to restore database backups for metabase to run queries on
-up-restore:
-	@echo "Starting Riff Business Analytics.";
-	@docker-compose up --detach;
+restore :
 	@echo "Restoring mysql database backups from 'database-backups' folder.";
 	@bash bin/restore-database-backups.sh;
 	@echo "Processes Complete. Metabase running on port 3000.";

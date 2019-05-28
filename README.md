@@ -8,6 +8,10 @@ official mysql image. Commands are provided to restore sql database backups from
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### Database Backups
+
+Download sql backups from the Riff Learning backup location (ask for the URL if you don't have it), and place all .sql files in a folder called 'database-backups' in the root of this repo.
+
 ### Prerequisites
 
 ```

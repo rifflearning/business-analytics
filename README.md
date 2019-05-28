@@ -1,7 +1,7 @@
-# Riff Business Analytics (READ ME A WIP)
+# business-analytics
+Tools to produce Riff Business analytic reports on RiffEdu and RiffPlatform deployments
 
-This repository uses a third-party package called Metabase to visualize usage metrics for Mattermost, 
-which is embedded in our product. Two docker containers are run; one using the metabase image and another using the
+This repository uses a third-party package called Metabase to visualize usage metrics for Mattermost. Two docker containers are run; one using the metabase image and another using the
 official mysql image. Commands are provided to restore sql database backups from Mattermost to the mysql container. 
 
 ## Getting Started
@@ -18,19 +18,19 @@ docker
 The first step is to clone this repository. The following commands are defined in a Makefile, and can be run as follows:
 
 ```
-make up-restore
-```
-This command should be your starting point. It will create the mysql and metabase containers (in detached mode) and restore databases from all .sql files in the folder ./database-backups
-
-```
 make up
 ```
 This command will create the mysql and metabase containers and show the logs for each
 
 ```
+make restore
+```
+Once the make-up command has completed (about 2-3 minutes), run this command. It will restore databases from all .sql files in the folder ./database-backups
+
+```
 make up-detach
 ```
-This command will create the mysql and metabase containers in detached mode (no logs)
+This command will create the mysql and metabase containers in detached mode (no logs). This is useful once you have ran the 'make restore' command in a previous session, and are just creating the containers again.
 
 ```
 make down
@@ -53,26 +53,25 @@ Once you navigate to port 3000, you will be shown the metabase homepage. I have 
 top, under the heading 'Start Here'. If you click on it, you will be taken to the dashboard, which shows all of the 
 questions, and a brief summary of each.
 
-## View a Question
+## View a Question and Download Reports
 
 If you click on a question in the dashboard, you will be taken to the query builder, which also shows a larger 
-visualisation of the data. You can change the way the data is visualised using the dropdown under 'Visualisation' and 
-edit/view the sql query by clicked 'OPEN EDITOR'. Some questions have optional parameters, for which values can
-be provided in the text fields above the data visualisation. 
+visualisation of the data. You can change the way the data is visualised using the dropdown under 'Visualisation. You can 
+edit/view the sql query by clicking 'OPEN EDITOR'. Some questions have optional parameters, for which values can
+be provided in the text fields above the data visualisation. After running the query, you can click the down arrow on the top right of the data visualisation to download the data in various formats.
 
 You can run the same questions on different databases by clicking 'OPEN EDITOR' in the question, and using 
-the dropdown to select a different database. You could also duplicate a dashboard, and individually change the database 
-for all questions. See 'Setting Up New Databases in Metabase' below.
+the dropdown to select a different database. See 'Setting Up New Databases in Metabase' below.
 
-## Editing in Metabase
+## Making Changes in Metabase
 
 If you make any changes to a question or dashboard, remember to click SAVE. At this point, you will want to commit the 
-./metabase-db folder to github to save those changes.
+./metabase-db folder to github to save those changes for future use.
 
 ## Setting Up New Databases in Metabase
 
 Once you have used the make up-restore command to restore the sql database to the mysql container
-as described above, you can add this database to metabase by:
+as described above, you can add a new database to metabase by:
   1. Clicking the gear icon in the top-right of the screen and selecting Admin
   2. Selecting Databases at the top, and clicking Add database.
 You will need to do this for every database you want to add, even if existing in the same sql schema

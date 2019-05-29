@@ -1,7 +1,7 @@
 # business-analytics
 Tools to produce Riff Business analytic reports on RiffEdu and RiffPlatform deployments
 
-This repository uses a third-party package called Metabase to visualize usage metrics for Mattermost. Two docker containers are run; one using the metabase image and another using the
+This repository uses a third-party package called [Metabase][] to visualize usage metrics for Mattermost. Two docker containers are run; one using the metabase image and another using the
 official mysql image. Commands are provided to restore sql database backups from Mattermost to the mysql container. 
 
 ## Getting Started
@@ -10,13 +10,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Database Backups
 
-Download sql backups from the Riff Learning backup location (ask for the URL if you don't have it), and place all .sql files in a folder called 'database-backups' in the root of this repo.
+Download sql backups from the Riff Learning backup location (ask for the URL if you don't have it), and place all .sql files in the folder called 'database-backups' in the root of this repo.
 
 ### Prerequisites
 
-```
-docker
-```
+- [docker CE][docker-install] (Community Edition)
+- [docker-compose][docker-compose-install]
+- git
+- make
+
 
 ## Running the Software
 The first step is to clone this repository. The following commands are defined in a Makefile, and can be run as follows:
@@ -29,12 +31,12 @@ This command will create the mysql and metabase containers and show the logs for
 ```
 make restore
 ```
-Once the make-up command has completed (about 2-3 minutes), run this command. It will restore databases from all .sql files in the folder ./database-backups
+Once the `make up` command has completed (about 2-3 minutes), run this command. It will restore databases from all .sql files in the folder ./database-backups
 
 ```
 make up-detach
 ```
-This command will create the mysql and metabase containers in detached mode (no logs). This is useful once you have ran the 'make restore' command in a previous session, and are just creating the containers again.
+This command will create the mysql and metabase containers in detached mode (no logs). This is useful once you have run the `make restore` command in a previous session, and are just creating the containers again.
 
 ```
 make down
@@ -79,3 +81,8 @@ as described above, you can add a new database to metabase by:
   1. Clicking the gear icon in the top-right of the screen and selecting Admin
   2. Selecting Databases at the top, and clicking Add database.
 You will need to do this for every database you want to add, even if existing in the same sql schema
+
+
+[Metabase]: <https://metabase.com/> "Metabase home"
+[docker-install]: <https://docs.docker.com/install/> "Docker installation instructions"
+[docker-compose-install]: <https://docs.docker.com/compose/install/> "docker-compose installation instructions"

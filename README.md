@@ -29,14 +29,9 @@ make up
 This command will create the mysql and metabase containers and show the logs for each
 
 ```
-make restore
-```
-Once the `make up` command has completed (about 2-3 minutes), run this command. It will restore databases from all .sql files in the folder ./database-backups
-
-```
 make up-detach
 ```
-This command will create the mysql and metabase containers in detached mode (no logs). This is useful once you have run the `make restore` command in a previous session, and are just creating the containers again.
+This command will create the mysql and metabase containers in detached mode (no logs).
 
 ```
 make down
@@ -44,7 +39,8 @@ make down
 This command will stop and remove the mysql and metabase containers. The mysql volume containing the sql backups will 
 persist locally however, so only make up or make up-detach is needed to start the software again.
 
-#### Metabase will be run on port 3000
+#### Restoring Database Backups
+Once the `make up` command has completed (about 2-3 minutes), open a new terminal tab and run `bin/restore-database-backups.sh`. It will restore databases from all .sql files in the folder ./database-backups
 
 ### Using and Configuring Metabase
 
@@ -55,7 +51,7 @@ configuration. If you are restoring an sql backup which contains databases other
 
 ## View the Dashboard
 
-Once you navigate to port 3000, you will be shown the metabase homepage. I have pinned the Mattermost dashboard to the 
+Once you navigate to http://localhost:3000, you will be shown the metabase sign-in promt. Ask a developer for the login credentials. Once logged in, you will be presented with the metabase homepage. I have pinned the Mattermost dashboard to the 
 top, under the heading 'Start Here'. If you click on it, you will be taken to the dashboard, which shows all of the 
 questions, and a brief summary of each.
 
@@ -80,6 +76,7 @@ Once you have used the make up-restore command to restore the sql database to th
 as described above, you can add a new database to metabase by:
   1. Clicking the gear icon in the top-right of the screen and selecting Admin
   2. Selecting Databases at the top, and clicking Add database.
+  3. Name the database connection. With the current docker-compose configuration, the host will be `ba-mmdb` and the port will be `3306`. You can also refer to the existing database connection settings.
 You will need to do this for every database you want to add, even if existing in the same sql schema
 
 

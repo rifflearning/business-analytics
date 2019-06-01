@@ -1,5 +1,4 @@
-# ignore everything except .gitignore and encrypted files (*.gpg) and scripts
+# ignore everything except .gitignore and encrypted files (*.gpg)
 *
 !.gitignore
 !*.gpg
-!*.sh

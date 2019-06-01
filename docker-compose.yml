@@ -4,19 +4,18 @@
 version: '3.6'
 services:
 
-  target-db:
+  ba-mmdb:
     image: mysql:5.7
-    container_name: mysql-business-analytics
+    container_name: ba-mysql #this container name is referred to inside ./bin/restore-database-backups.sh
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - '3306:3306'
     volumes:
-      - target-db-data:/var/lib/mysql
+      - ba-mmdb-data:/var/lib/mysql
 
-  metabase:
+  ba-metabase:
     image: metabase/metabase:latest
-    container_name: metabase-business-analytics
     environment:
       MB_DB_FILE: ./metabase-db/metabase.db
     ports:
@@ -24,8 +23,7 @@ services:
     volumes:
       - ./metabase-db:/metabase-db
     depends_on:
-      - target-db
+      - ba-mmdb
 
 volumes:
-  target-db-data:
-  metabase-db:
+  ba-mmdb-data:

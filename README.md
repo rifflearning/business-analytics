@@ -21,7 +21,12 @@ Download sql backups from the Riff Learning backup location (ask for the URL if 
 
 
 ## Running the Software
+
+#### Note:
+The SQL container uses port 3306 and the metabase container uses port 3000 on your local machine. You will need to stop any servers running locally on those ports in order to continue.
+
 The first step is to clone this repository. The following commands are defined in a Makefile, and can be run as follows:
+
 
 ```
 make up
@@ -51,7 +56,7 @@ configuration. If you are restoring an sql backup which contains databases other
 
 ## View the Dashboard
 
-Once you navigate to http://localhost:3000, you will be shown the metabase sign-in promt. Ask a developer for the login credentials. Once logged in, you will be presented with the metabase homepage. I have pinned the Mattermost dashboard to the
+Open a web-browser and navigate to http://localhost:3000. You will be shown the metabase sign-in prompt. Ask a developer for the login credentials. Once logged in, you will be presented with the metabase homepage. I have pinned the Mattermost dashboard to the
 top, under the heading 'Start Here'. If you click on it, you will be taken to the dashboard, which shows all of the
 questions, and a brief summary of each.
 

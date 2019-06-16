@@ -47,6 +47,9 @@ persist locally however, so only make up or make up-detach is needed to start th
 #### Restoring Database Backups
 Once the `make up` command has completed (about 2-3 minutes), open a new terminal tab and run `bin/restore-database-backups.sh`. It will restore databases from all .sql files in the folder ./database-backups. You may need to run `chmod +x ./bin/restore-database-backups.sh`, to make the file executable.
 
+#### make clean
+It is recommended that, after running the previous command to restore database backups, you run ```make clean```, which will delete all .sql files in the folder ./database-backups.
+
 ### Using and Configuring Metabase
 
 If you are using a backup from our current deployment of edu-nexted, the database name in the sql backups

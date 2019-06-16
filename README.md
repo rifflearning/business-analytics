@@ -79,7 +79,11 @@ the dropdown to select a different database. See 'Setting Up New Databases in Me
 
 ## Making Changes in Metabase
 
-If you make any changes to a question or dashboard, remember to click SAVE. At this point, you will want to commit the
+If you make any changes to a question or dashboard, remember to click SAVE.
+
+<img src="docs/images/question-save-btn-preview.png" width="500"/>
+
+At this point, you will want to commit the
 ./metabase-db folder to github to save those changes for future use.
 
 ## Setting Up New Databases in Metabase

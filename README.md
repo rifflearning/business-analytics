@@ -10,7 +10,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Database Backups
 
-Download sql backups from the Riff Learning backup location (ask for the URL if you don't have it), and place all .sql files in the folder called 'database-backups' in the root of this repo.
+Download sql backups from the Riff Learning backup location (ask for the URL if you don't have it).
+
+The database backups are currently stored as gzipped files. After download, you will need to locate the downloaded gzipped sql backups and run ``` gzip -d {filename} ``` on each file, or alternatively, run ``` gzip -d * ``` to unzip all files in the directory.
+
+After extraction, place all .sql files in the folder called 'database-backups' in the root of this repo.
 
 ### Prerequisites
 

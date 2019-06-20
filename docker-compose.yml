@@ -1,0 +1,29 @@
+# Configuration for the services that are required to run an analysis of the
+# data from riff edu mattermost.
+# see https://www.metabase.com/docs/latest/operations-guide/running-metabase-on-docker.html
+version: '3.6'
+services:
+
+  ba-mmdb:
+    image: mysql:5.7
+    container_name: ba-mysql #this container name is referred to inside ./bin/restore-database-backups.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - '3306:3306'
+    volumes:
+      - ba-mmdb-data:/var/lib/mysql
+
+  ba-metabase:
+    image: metabase/metabase:latest
+    environment:
+      MB_DB_FILE: ./metabase-db/metabase.db
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./metabase-db:/metabase-db
+    depends_on:
+      - ba-mmdb
+
+volumes:
+  ba-mmdb-data:

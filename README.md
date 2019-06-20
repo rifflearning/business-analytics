@@ -43,6 +43,16 @@ make up-detach
 This command will create the mysql and metabase containers in detached mode (no logs).
 
 ```
+make remove-database-backups
+```
+This command will remove all .sql files inside of the folder `./database-backups`. It is recommended to run this after you restore the .sql backups to the mysql container, as described below under 'Restoring Database Backups'.
+
+```
+make clean
+```
+This command will remove the metabase log file located at `./metabase-db/metabase.db/metabase.db.trace.db`. It also removes the mysql docker volume. Note that in order to run this command successfully, you will need to run `make down` first, since you can't delete a volume that is in use by a running container.
+
+```
 make down
 ```
 This command will stop and remove the mysql and metabase containers. The mysql volume containing the sql backups will
